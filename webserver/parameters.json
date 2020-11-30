@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "KeyName",
+    "ParameterValue": "sebastian987"
+  },
+  {
+    "ParameterKey": "PrivateSubnets",
+    "ParameterValue": "subnet-04bea87fd85a23819,subnet-06fc4c22da0b68ffc"
+  },
+  {
+    "ParameterKey": "PublicSubnets",
+    "ParameterValue": "subnet-082832f3a34c2fc79,subnet-008edef85c8bea7ae"
+  },
+  {
+    "ParameterKey": "VpcId",
+    "ParameterValue": "vpc-04cbb08e0146e0075"
+  }
+]

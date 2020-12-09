@@ -593,7 +593,16 @@
           {
             "Ref": "ALBTargetGroup"
           }
-        ]
+        ],
+        "Tags" : [ {
+          "Key" : "project",
+          "PropagateAtLaunch" : "true",
+          "Value" : "awesomebuilder"
+        }, {
+          "Key" : "name",
+          "PropagateAtLaunch" : "true",
+          "Value" : "WebServerGroup"
+        } ]
       },
       "CreationPolicy": {
         "ResourceSignal": {

@@ -588,7 +588,7 @@
           "Ref": "LaunchConfig"
         },
         "MinSize": "1",
-        "MaxSize": "4",
+        "MaxSize": "3",
         "TargetGroupARNs": [
           {
             "Ref": "ALBTargetGroup"

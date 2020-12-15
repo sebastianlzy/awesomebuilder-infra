@@ -1,3 +1,4 @@
+export AWS_DEFAULT_REGION=ap-southeast-1
 STACK_NAME=Webserver
 FILE_PATH=~/workplace/awesomebuilder/infra/webserver
 S3_PATH=s3://awesome-builder-infra

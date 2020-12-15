@@ -13,7 +13,7 @@ aws cloudformation list-exports | jq "[.Exports[] | {ParameterKey: .Name, Parame
 echo 'cat parameters.json'
 cat $FILE_PATH/parameters.json
 echo "updating stack $STACK_NAME"
-aws cloudformation update-stack --stack-name $STACK_NAME --template-url $S3_HTTP_URI/Webserver.json --parameters "$(cat $FILE_PATH/parameters.json)"
+aws cloudformation update-stack --stack-name $STACK_NAME --template-url $S3_HTTP_URI/Webserver.json --parameters "$(cat $FILE_PATH/parameters.json)" --capabilities CAPABILITY_NAMED_IAM
 echo 'waiting for stack to be updated'
 aws cloudformation wait stack-update-complete --stack-name $STACK_NAME
 echo 'stack updated'

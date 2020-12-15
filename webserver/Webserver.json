@@ -633,6 +633,44 @@
         }
       }
     },
+    "RootRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version" : "2012-10-17",
+          "Statement": [ {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": [ "ec2.amazonaws.com" ]
+            },
+            "Action": [ "sts:AssumeRole" ]
+          } ]
+        },
+        "Path": "/"
+      }
+    },
+    "RolePolicies": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "root",
+        "PolicyDocument": {
+          "Version" : "2012-10-17",
+          "Statement": [ {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+          } ]
+        },
+        "Roles": [ { "Ref": "RootRole" } ]
+      }
+    },
+    "RootInstanceProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Path": "/",
+        "Roles": [ { "Ref": "RootRole" } ]
+      }
+    },
     "LaunchConfig" : {
       "Type" : "AWS::AutoScaling::LaunchConfiguration",
       "Metadata" : {
@@ -691,6 +729,7 @@
         }
       },
       "Properties" : {
+        "IamInstanceProfile": { "Ref": "RootInstanceProfile" },
         "ImageId" : "ami-0ae5ba72ac157d468",
         "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" } ],
         "InstanceType" : { "Ref" : "InstanceType" },
@@ -700,6 +739,7 @@
             "yum update -y aws-cfn-bootstrap\n",
             "cd /home/ec2-user/awesomebuilder-ui\n",
             "git pull origin master\n",
+            "npm install\n",
             "echo 'i am here 2' > iamhere.txt\n",
             "sudo pm2 start npm --name \"reactserver\" -- start\n",
             "sudo pm2 start \"./server/index.js\" --name \"expressserver\"\n",

@@ -4,12 +4,17 @@
 
 ### High level architecture
 
+
 ![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-POC.png)
 
-### VPC
+### VPC.yaml
+
+An explanation on the different component inside the CF template that will serve as the foundation for networking 
 
 ![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-VPC%20Cloudformation.png)
 
-### Webserver
+### Webserver.yaml
+
+An explanation on the different component inside the CF template that will serve as the foundation to launch an application
 
 ![alt Webserver cloudformation](https://github.com/sebastianlzy/draw-io/raw/master/awesomebuilderIII%20-Webserver%20Cloudformation.png)

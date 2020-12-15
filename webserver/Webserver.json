@@ -606,14 +606,14 @@
       },
       "CreationPolicy": {
         "ResourceSignal": {
-          "Timeout": "PT5M"
+          "Timeout": "PT1M"
         }
       },
       "UpdatePolicy": {
         "AutoScalingRollingUpdate": {
           "MinInstancesInService": "1",
           "MaxBatchSize": "2",
-          "PauseTime": "PT5M",
+          "PauseTime": "PT1M",
           "WaitOnResourceSignals": "true"
         }
       }
@@ -633,7 +633,6 @@
         }
       }
     },
-
     "LaunchConfig" : {
       "Type" : "AWS::AutoScaling::LaunchConfiguration",
       "Metadata" : {
@@ -766,12 +765,6 @@
             "IpProtocol": "tcp",
             "FromPort": "80",
             "ToPort": "80",
-            "CidrIp": "0.0.0.0/0"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": "8000",
-            "ToPort": "8000",
             "CidrIp": "0.0.0.0/0"
           }
         ],

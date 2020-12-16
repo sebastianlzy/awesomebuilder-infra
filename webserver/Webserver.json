@@ -854,6 +854,66 @@
           "Ref": "VpcId"
         }
       }
+    },
+    "RDSSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Enable SSH access and HTTP access on the inbound port",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "SourceSecurityGroupId": {"Ref": "InstanceSecurityGroup"}
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "SourceSecurityGroupId": {"Ref": "SSHSecurityGroup"}
+          }
+        ],
+        "VpcId": {
+          "Ref": "VpcId"
+        }
+      }
+    },
+    "MyRDSInstanceRotationSecret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "This is my rds instance secret",
+        "GenerateSecretString": {
+          "SecretStringTemplate": "{\"username\": \"admin\"}",
+          "GenerateStringKey": "password",
+          "PasswordLength": 16,
+          "ExcludeCharacters": "\"@/\\"
+        },
+        "Tags": [
+          {
+            "Key": "AppName",
+            "Value": "MyApp"
+          }
+        ]
+      }
+    },
+    "MyDBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": 20,
+        "DBInstanceClass": "db.t3.micro",
+        "Engine": "mysql",
+        "DBSubnetGroupName": {
+          "Ref": "MyDBSubnetGroup"
+        },
+        "MasterUsername": {
+          "Fn::Sub": "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
+        },
+        "MasterUserPassword": {
+          "Fn::Sub": "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
+        },
+        "BackupRetentionPeriod": 0,
+        "VPCSecurityGroups": ["sg-07e60f16f7addbe17"]
+      }
     }
   },
   "Outputs": {

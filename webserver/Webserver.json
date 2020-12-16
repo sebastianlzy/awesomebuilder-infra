@@ -602,6 +602,10 @@
           "Key" : "name",
           "PropagateAtLaunch" : "true",
           "Value" : "WebServerGroup"
+        }, {
+          "Key" : "Name",
+          "PropagateAtLaunch" : "true",
+          "Value" : "WebServerGroup"
         } ]
       },
       "CreationPolicy": {

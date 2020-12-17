@@ -1,8 +1,7 @@
-## Introduction
-
+# Introduction
 
     
-### High level architecture
+## High level architecture
 
 
 ![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-POC.png)
@@ -37,26 +36,32 @@ Together with the use of version control, system developers can collaborate easi
 
 An explanation on the different component inside the CF template that will serve as the foundation for networking 
 
+1. 2 private subnet
+2. 2 public subnet
+
 ![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-VPC%20Cloudformation.png)
-
-#### Security
-
-##### 1. Use of private subnet
-
-Private subnet are not publicly accessible. Instances in private subnet cannot send outbound traffic directly to the internet. Instead, the instances can access the internet using network address translation (NAT) gateway that resides in the public subnet. 
-
-In the diagram, the webserver and database resides in a private subnet and only the application load balancer is exposed to the internet
 
 
 ### Webserver.yaml
 
 An explanation on the different component inside the CF template that will serve as the foundation to launch an application
 
+1. Elastic load balancer
+2. Webserver
+3. Database
+
 ![alt Webserver cloudformation](https://github.com/sebastianlzy/draw-io/raw/master/awesomebuilderIII%20-Webserver%20Cloudformation.png)
 
-#### Security
+### Security
 
-##### 1. Use of security group
+
+#### 1. Use of private subnet
+
+Private subnet are not publicly accessible. Instances in private subnet cannot send outbound traffic directly to the internet. Instead, the instances can access the internet using network address translation (NAT) gateway that resides in the public subnet. 
+
+In the diagram, the webserver and database resides in a private subnet and only the application load balancer is exposed to the internet
+
+#### 2. Use of security group
 
 A security group acts as a virtual firewall for instances to control inbound and outbound traffic. Security group act at the instance level and each instance can be assigned to a different set of security group
 
@@ -66,7 +71,7 @@ In the diagram, each instance type is assigned a security group that limit inbou
 2. The InstanceSecurityGroup attached to the webserver restrict access to TCP:80 from ALBSecurityGroup and TCP:22 from JenkinsSecurityGroup
 3. The DBSecurityGroup attached to the database restrict access to TCP:3306 from InstanceSecurityGroup and JenkinsSecurityGroup
 
-##### 2. Use of secret manager
+#### 3. Use of secret manager
 
 Secret Manager helps protect secrets needed to access the database. Application can retrieve secrets with a call to Secret Managers API, hence, eliminating the need to hardcode sensitive information in plain text
 

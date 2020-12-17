@@ -1,6 +1,22 @@
 ## Introduction
 
-[AWS CloudFormation](https://aws.amazon.com/cloudformation/) gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating infrastructure as code. A CloudFormation template describes your desired resources and their dependencies so you can launch and configure them together as a stack. You can use a template to create, update, and delete an entire stack as a single unit, as often as you need to, instead of managing resources individually. You can manage and provision stacks across multiple AWS accounts and AWS Regions.
+[AWS CloudFormation](https://aws.amazon.com/cloudformation/) gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating infrastructure as code. 
+
+A CloudFormation template describes the desired resources and their dependencies so you can launch and configure them together as a stack. 
+
+### Advantage of Infrastructure as Code (Cloudformation)
+
+#### 1. Deployment speed
+As all the environments are provisioned using Cloudformation, 
+you are able to manage and provision stacks across multiple AWS accounts and AWS Regions.
+ 
+#### 2. Immutable infrastructure
+    1. Eliminate human error
+#### 3. Change management
+    1. Ability to rollback
+    2. Traceable
+#### 4. High scalability
+#### 5. Shorter feedback loops
 
 ### High level architecture
 

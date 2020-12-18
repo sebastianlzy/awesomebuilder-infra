@@ -88,23 +88,28 @@ const addReadReplica = (modifiedCfTemplate) => {
 
 const addSecurityGroups = async (modifiedCfTemplate) => {
 
+    const isInternetAccessible = true
     const securityGroups = await createSecurityGroups()
+
     securityGroups.forEach((securityGroup) => {
         console.log(securityGroup)
         const name = Object.keys(securityGroup)[0]
         modifiedCfTemplate.Resources[name] = securityGroup[name]
     })
 
+
     //Allow port 80 access from 0.0.0.0
     modifiedCfTemplate["Resources"]["ApplicationLoadBalancer"]["Properties"]["SecurityGroups"] = [
         {"Ref": "ALBSecurityGroup"},
     ]
 
-    //Allow port 80 access from Cloudfront IP addresses
-    // modifiedCfTemplate["Resources"]["ApplicationLoadBalancer"]["Properties"]["SecurityGroups"] = [
-    //     {"Ref": "ALBSecurityGroup1"},
-    //     {"Ref": "ALBSecurityGroup2"},
-    // ]
+    if (!isInternetAccessible) {
+        //Allow port 80 access from Cloudfront IP addresses
+        modifiedCfTemplate["Resources"]["ApplicationLoadBalancer"]["Properties"]["SecurityGroups"] = [
+            {"Ref": "ALBSecurityGroup1"},
+            {"Ref": "ALBSecurityGroup2"},
+        ]
+    }
 
     return modifiedCfTemplate
 }

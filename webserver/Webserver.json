@@ -219,7 +219,10 @@
         },
         "SecurityGroups": [
           {
-            "Ref": "ALBSecurityGroup"
+            "Ref": "ALBSecurityGroup1"
+          },
+          {
+            "Ref": "ALBSecurityGroup2"
           }
         ]
       }

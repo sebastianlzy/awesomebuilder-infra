@@ -4,7 +4,7 @@
 ## High level architecture
 
 
-![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-POC.png)
+![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilder/awesomebuilderIII-POC.png)
 
 ## Cloudformation
 
@@ -39,7 +39,7 @@ An explanation on the different component inside the CF template that will serve
 1. 2 private subnet
 2. 2 public subnet
 
-![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilderIII%20-VPC%20Cloudformation.png)
+![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilder/awesomebuilderIII-VPC%20Cloudformation.png)
 
 
 ### Webserver.yaml
@@ -50,7 +50,7 @@ An explanation on the different component inside the CF template that will serve
 2. Webserver
 3. Database
 
-![alt Webserver cloudformation](https://github.com/sebastianlzy/draw-io/raw/master/awesomebuilderIII%20-Webserver%20Cloudformation.png)
+![alt Webserver cloudformation](https://github.com/sebastianlzy/draw-io/raw/master/awesomebuilder/awesomebuilderIII-Webserver%20Cloudformation.png)
 
 ### Security
 

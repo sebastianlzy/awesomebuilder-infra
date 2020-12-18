@@ -137,14 +137,14 @@
       },
       "CreationPolicy": {
         "ResourceSignal": {
-          "Timeout": "PT20S"
+          "Timeout": "PT1M"
         }
       },
       "UpdatePolicy": {
         "AutoScalingRollingUpdate": {
           "MinInstancesInService": "1",
           "MaxBatchSize": "2",
-          "PauseTime": "PT20S",
+          "PauseTime": "PT1M",
           "WaitOnResourceSignals": "true"
         }
       }
@@ -248,10 +248,8 @@
                 "cd /home/ec2-user/awesomebuilder-ui\n",
                 "git pull origin master\n",
                 "npm install\n",
-                "sudo pm2 start npm --name \"reactserver\" --log-date-format \"YYYY-MM-DD HH:mm\" -- start\n",
-                "sudo pm2 start \"./server/index.js\" --name \"expressserver\" --log-date-format \"YYYY-MM-DD HH:mm\"\n",
-                "pm2 install pm2-logrotate\n",
-                "sudo pm2 set pm2-logrotate:compress true\n",
+                "sudo pm2 start npm --name \"reactserver\" -- start\n",
+                "sudo pm2 start \"./server/index.js\" --name \"expressserver\"\n",
                 "/opt/aws/bin/cfn-signal -e $? ",
                 "         --stack ",
                 {

@@ -248,7 +248,7 @@
                 "git pull origin master\n",
                 "npm install\n",
                 "sudo pm2 start npm --name \"reactserver\" -- start\n",
-                "sudo pm2 start \"./server/index.js\" --name \"expressserver\" -o /logs/express \n",
+                "sudo pm2 start \"./server/index.js\" --name \"expressserver\" -o /logs/express.log --log-date-format \"YYYY-MM-DD HH:mm\"\n",
                 "/opt/aws/bin/cfn-signal -e $? ",
                 "         --stack ",
                 {

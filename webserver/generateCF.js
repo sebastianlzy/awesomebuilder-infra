@@ -86,7 +86,7 @@ const addReadReplica = (modifiedCfTemplate) => {
     }
 }
 
-const addSecurityGroups = async (modifiedCfTemplate) => {
+const addALBSecurityGroup = async (modifiedCfTemplate) => {
 
     const isInternetAccessible = true
     const securityGroups = await createSecurityGroups()
@@ -114,7 +114,7 @@ const addSecurityGroups = async (modifiedCfTemplate) => {
     return modifiedCfTemplate
 }
 
-addSecurityGroups(cfTemplate)
+addALBSecurityGroup(cfTemplate)
     .then((modifiedCfTemplate) => {
         // addReadReplica(modifiedCfTemplate)
         fs.writeFile('Webserver.json', JSON.stringify(modifiedCfTemplate), function (err) {

@@ -247,8 +247,10 @@
                 "cd /home/ec2-user/awesomebuilder-ui\n",
                 "git pull origin master\n",
                 "npm install\n",
-                "sudo pm2 start npm --name \"reactserver\" -- start\n",
-                "sudo pm2 start \"./server/index.js\" --name \"expressserver\" -o /logs/express.log --log-date-format \"YYYY-MM-DD HH:mm\"\n",
+                "sudo pm2 start npm --name \"reactserver\" --log-date-format \"YYYY-MM-DD HH:mm\" -- start\n",
+                "sudo pm2 start \"./server/index.js\" --name \"expressserver\" --log-date-format \"YYYY-MM-DD HH:mm\"\n",
+                "pm2 install pm2-logrotate",
+                "sudo pm2 set pm2-logrotate:compress true",
                 "/opt/aws/bin/cfn-signal -e $? ",
                 "         --stack ",
                 {

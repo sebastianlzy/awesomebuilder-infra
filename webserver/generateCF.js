@@ -113,6 +113,13 @@ const addALBSecurityGroup = async (modifiedCfTemplate, isInternetAccessible) => 
     return modifiedCfTemplate
 }
 
+
+/*
+    Add Security Group to application load balancer
+    isInternetAccessible:
+        True - Allow access from everywhere (0.0.0.0) on port 80
+        False - Allow access from cloudfront ip addresses on port 80 only
+ */
 addALBSecurityGroup(cfTemplate, true)
     .then((modifiedCfTemplate) => {
         // addReadReplica(modifiedCfTemplate)

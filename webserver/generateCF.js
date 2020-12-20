@@ -91,7 +91,6 @@ const addALBSecurityGroup = async (modifiedCfTemplate, isInternetAccessible) => 
     const securityGroups = await createSecurityGroups()
 
     securityGroups.forEach((securityGroup) => {
-        console.log(securityGroup)
         const name = Object.keys(securityGroup)[0]
         modifiedCfTemplate.Resources[name] = securityGroup[name]
     })

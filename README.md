@@ -84,9 +84,9 @@ A security group acts as a virtual firewall for instances to control inbound and
 
 In the diagram, each instance type is assigned a security group that limit inbound access. 
 
-1. The ALBSecurityGroup attached to the application load balancer restrict access to TCP:80 from Cloudfront origin. 
-2. The InstanceSecurityGroup attached to the webserver restrict access to TCP:80 from ALBSecurityGroup and TCP:22 from JenkinsSecurityGroup
-3. The DBSecurityGroup attached to the database restrict access to TCP:3306 from InstanceSecurityGroup and JenkinsSecurityGroup
+1. The ALBSecurityGroup attached to the application load balancer restrict access to traffic coming from Cloudfront IP addresses, TCP:80  
+2. The InstanceSecurityGroup attached to the webserver restrict access to traffic coming from ALBSecurityGroup, TCP:80 and JenkinsSecurityGroup, TCP:22 
+3. The DBSecurityGroup attached to the database restrict access to traffic coming from InstanceSecurityGroup, TCP:3306 from  and JenkinsSecurityGroup, TCP:3306
 
 #### 3. Use of Amazon Web Application Firewall (WAF)
  

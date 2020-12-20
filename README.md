@@ -52,26 +52,56 @@ An explanation on the different component inside the CF template that will serve
 
 ![alt Webserver cloudformation](https://github.com/sebastianlzy/draw-io/raw/master/awesomebuilder/awesomebuilderIII-Webserver%20Cloudformation.png)
 
+### CDN
+**Amazon CloudFront** is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment.
+
+#### Demo (S3 vs Cloudfront)
+
+Cloudfront is able to serve static assets faster than origin
+
+![cfdemo](./readme/S3Cloudfront.gif)
+
+#### Other benefits of cloudfront
+1. Persistent Connections: CloudFront maintains a pool of persistent connections to the origin, thus reducing the overhead of repeatedly establishing new connections to the origin
+2. Collapsed Forwarding: During traffic spikes, CloudFront collapses simultaneous requests for cache misses before forwarding the request to your origin reducing unnecessary load to your origin.
+3. Global reach: CloudFront global network, which consists of over 225 points of presence (POP), reduces the time to establish viewer-facing connections because the physical distance to the viewer is shortened. This reduces overall latency for serving both static and dynamic content.
+
+
+#### References
+1. https://aws.amazon.com/blogs/networking-and-content-delivery/dynamic-whole-site-delivery-with-amazon-cloudfront/
+
 ### Security
 
-
-#### 1. Use of private subnet
+#### 1. Subnet: Use of private subnet
 
 Private subnet are not publicly accessible. Instances in private subnet cannot send outbound traffic directly to the internet. Instead, the instances can access the internet using network address translation (NAT) gateway that resides in the public subnet. 
 
 In the diagram, the webserver and database resides in a private subnet and only the application load balancer is exposed to the internet
 
-#### 2. Use of security group
+#### 2. Instances: Use of security group
 
 A security group acts as a virtual firewall for instances to control inbound and outbound traffic. Security group act at the instance level and each instance can be assigned to a different set of security group
 
 In the diagram, each instance type is assigned a security group that limit inbound access. 
 
-1. The ALBSecurityGroup attached to the application load balancer restrict access from the internet to TCP:80. 
+1. The ALBSecurityGroup attached to the application load balancer restrict access to TCP:80 from Cloudfront origin. 
 2. The InstanceSecurityGroup attached to the webserver restrict access to TCP:80 from ALBSecurityGroup and TCP:22 from JenkinsSecurityGroup
 3. The DBSecurityGroup attached to the database restrict access to TCP:3306 from InstanceSecurityGroup and JenkinsSecurityGroup
 
-#### 3. Use of secret manager
+#### 3. Use of Amazon Web Application Firewall (WAF)
+ 
+CloudFront integrates with AWS WAF, which allow the addition of rules to filter malicious requests (such as SQL injection, cross-site scripting, etc.) can be added to WAF 
+
+#### 4. Use of AWS shield to protect against DDoS
+
+AWS Shield Standard is included (with the use of Cloudfront) at no additional cost. 
+Cloudfront prevent DDOS attacks (layer 3 and 4) by distributing traffic across multiple points of presence (POP) locations and filtering requests to ensure that only valid HTTP(S) requests are forwarded to backend hosts.
+
+#### 5. Encryption in transit
+
+CloudFront is configured to strictly enforce SSL protocols  
+
+#### 6. Application: Use of secret manager
 
 Secret Manager helps protect secrets needed to access the database. Application can retrieve secrets with a call to Secret Managers API, hence, eliminating the need to hardcode sensitive information in plain text
 
@@ -149,3 +179,5 @@ const getDBConnectionParams = async () => {
 }
 
 ```
+
+

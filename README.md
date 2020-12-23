@@ -6,6 +6,25 @@
 
 ![alt High Level architecture](https://raw.githubusercontent.com/sebastianlzy/draw-io/master/awesomebuilder/awesomebuilderIII-POC.png)
 
+
+## CDN 
+**Amazon CloudFront** is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment.
+
+#### Demo (S3 vs Cloudfront)
+
+Cloudfront is able to serve static assets faster than origin
+
+![cfdemo](./readme/S3Cloudfront.gif)
+
+#### Other benefits of cloudfront
+1. Persistent Connections: CloudFront maintains a pool of persistent connections to the origin, thus reducing the overhead of repeatedly establishing new connections to the origin
+2. Collapsed Forwarding: During traffic spikes, CloudFront collapses simultaneous requests for cache misses before forwarding the request to your origin reducing unnecessary load to your origin.
+3. Global reach: CloudFront global network, which consists of over 225 points of presence (POP), reduces the time to establish viewer-facing connections because the physical distance to the viewer is shortened. This reduces overall latency for serving both static and dynamic content.
+
+
+#### References
+1. https://aws.amazon.com/blogs/networking-and-content-delivery/dynamic-whole-site-delivery-with-amazon-cloudfront/
+
 ## Cloudformation
 
 [AWS CloudFormation](https://aws.amazon.com/cloudformation/) gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating infrastructure as code. 
@@ -162,23 +181,6 @@ const getDBConnectionParams = async () => {
 
 ```
 
-### CDN
-**Amazon CloudFront** is a fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency, high transfer speeds, all within a developer-friendly environment.
-
-#### Demo (S3 vs Cloudfront)
-
-Cloudfront is able to serve static assets faster than origin
-
-![cfdemo](./readme/S3Cloudfront.gif)
-
-#### Other benefits of cloudfront
-1. Persistent Connections: CloudFront maintains a pool of persistent connections to the origin, thus reducing the overhead of repeatedly establishing new connections to the origin
-2. Collapsed Forwarding: During traffic spikes, CloudFront collapses simultaneous requests for cache misses before forwarding the request to your origin reducing unnecessary load to your origin.
-3. Global reach: CloudFront global network, which consists of over 225 points of presence (POP), reduces the time to establish viewer-facing connections because the physical distance to the viewer is shortened. This reduces overall latency for serving both static and dynamic content.
-
-
-#### References
-1. https://aws.amazon.com/blogs/networking-and-content-delivery/dynamic-whole-site-delivery-with-amazon-cloudfront/
 
 
 
